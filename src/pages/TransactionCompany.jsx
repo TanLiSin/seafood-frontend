@@ -200,7 +200,10 @@ function TransactionCompany() {
             <TransactionFormCompany
               onSubmitSuccess={fetchTransactions}
               editTx={editTx}
-              onCancelEdit={() => setEditTx(null)}
+              onCancelEdit={() => {
+                setEditTx(null);
+                setShowForm(false);     // ✅ This hides the form
+              }}
             />
           ) : (
             <div className="record-table-container">
