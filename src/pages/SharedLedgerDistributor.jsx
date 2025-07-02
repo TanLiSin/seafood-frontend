@@ -27,13 +27,7 @@ function SharedLedgerDistributor() {
         `${import.meta.env.VITE_NODE_API}/api/shared-ledger-distributor?distributorName=${distributorName}`
       );
       const data = await response.json();
-  
-      // Prevent overlap: remove freshness records already included in transactions
-      const txProductIds = new Set(data.transactions.map(tx => tx.product_id));
-      const filteredFreshness = (data.freshnessRecords || []).filter(
-        rec => !txProductIds.has(rec.product_id)
-      );
-  
+
       setFreshnessRecords(filteredFreshness);
       setTransactions(data.transactions || []);
     } catch (error) {
