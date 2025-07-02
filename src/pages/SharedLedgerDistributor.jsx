@@ -124,14 +124,15 @@ function SharedLedgerDistributor() {
     );
   };
 
-  const filteredData = filterData(transactions).filter(tx =>
-    typeof tx.transaction_id === 'string' &&
-    typeof tx.product_id === 'string' &&
-    typeof tx.freshness === 'string' &&
-    !isNaN(Number(tx.amount)) &&
-    typeof tx.created_at === 'string' &&
-    tx.created_at.length >= 10 // basic ISO date check
-  );
+  const renderTransactionTable = () => {
+    const filteredData = filterData(transactions).filter(tx =>
+      typeof tx.transaction_id === 'string' &&
+      typeof tx.product_id === 'string' &&
+      typeof tx.freshness === 'string' &&
+      !isNaN(Number(tx.amount)) &&
+      typeof tx.created_at === 'string' &&
+      tx.created_at.length >= 10 // basic ISO date check
+    );
 
     return (
       <div className="record-table-container">
