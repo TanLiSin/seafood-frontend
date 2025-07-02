@@ -28,7 +28,7 @@ function SharedLedgerDistributor() {
       );
       const data = await response.json();
 
-      setFreshnessRecords(filteredFreshness);
+      setFreshnessRecords(data.freshnessRecords || []);
       setTransactions(data.transactions || []);
     } catch (error) {
       console.error('Error fetching shared ledger data:', error);
