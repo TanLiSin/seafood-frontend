@@ -126,12 +126,11 @@ function SharedLedgerDistributor() {
 
   const renderTransactionTable = () => {
     const filteredData = filterData(transactions).filter(tx =>
-      typeof tx.transaction_id === 'string' &&
-      typeof tx.product_id === 'string' &&
-      typeof tx.freshness === 'string' &&
-      !isNaN(Number(tx.amount)) &&
-      typeof tx.created_at === 'string' &&
-      tx.created_at.length >= 10 // basic ISO date check
+      tx.transaction_id &&
+      tx.product_id &&
+      tx.created_at &&
+      !isNaN(parseInt(tx.amount)) &&
+      typeof tx.freshness === 'string'
     );
 
     return (
